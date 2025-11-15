@@ -6,74 +6,216 @@
     <title>Leagues — Valley Bowl Madera</title>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
   </head>
-  <body>
-    <header class="site-header">
-      <div class="brand">
-        <img src="assets/logo.svg" alt="Valley Bowl Madera logo" class="logo" />
-        <h1>Leagues</h1>
-      </div>
-      <nav class="main-nav" aria-label="Main navigation">
-        <a href="index.html">Home</a>
-        <a href="league.html" class="active">League</a>
-        <a href="events.html">Events</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-      <button
-        id="snackbar-toggle-2"
-        class="snackbar-toggle"
-        aria-expanded="false"
-        aria-controls="snackbar"
+  <body class="dark">
+    <div class="relative min-h-screen w-full">
+      <!-- Top App Bar -->
+      <div
+        class="sticky top-0 z-10 flex flex-col bg-background-dark/80 backdrop-blur-sm"
       >
-        ☰
-      </button>
-    </header>
-
-    <main class="page">
-      <section>
-        <h2>League Play</h2>
-        <p>
-          We host multiple leagues across the week: mixed doubles, seniors,
-          youth, and competitive scratch leagues. Seasons are 12–20 weeks
-          depending on the division.
-        </p>
-        <h3>How to join</h3>
-        <ol>
-          <li>Pick the division that suits your skill and schedule.</li>
-          <li>Register online or at the front desk.</li>
-          <li>Pay season fees and show up ready to bowl.</li>
-        </ol>
-        <h3>Contact for league questions</h3>
-        <p>
-          Email:
-          <a href="mailto:leagues@valleybowlmadera.example"
-            >leagues@valleybowlmadera.example</a
+        <div class="flex items-center p-4">
+          <button
+            class="flex size-10 shrink-0 items-center justify-center rounded-full text-[#F5F5F5]"
           >
-          or use the <a href="contact.html">Contact</a> page.
-        </p>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <p>© <span id="year-league"></span> Valley Bowl Madera</p>
-    </footer>
-
-    <div id="snackbar" class="snackbar" role="dialog" aria-hidden="true">
-      <nav class="snackbar-nav">
-        <a href="index.html">Home</a>
-        <a href="league.html">League</a>
-        <a href="events.html">Events</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-      <button
-        id="snackbar-close-2"
-        class="snackbar-close"
-        aria-label="Close menu"
-      >
-        ✕
-      </button>
+            <span class="material-symbols-outlined">arrow_back</span>
+          </button>
+          <h1
+            class="glow-text text-xl font-bold leading-tight tracking-tight text-neon-blue flex-1 text-center"
+          >
+            Leagues at Valley Bowl
+          </h1>
+          <div class="flex w-10 shrink-0 items-center justify-end"></div>
+          <!-- Spacer -->
+        </div>
+        <div class="px-4 pb-3">
+          <a
+            class="block text-center text-sm font-bold text-neon-pink hover:underline"
+            href="#"
+            >View League Standings</a
+          >
+        </div>
+      </div>
+      <!-- Filter Chips -->
+      <div class="flex gap-3 p-4 overflow-x-auto">
+        <div
+          class="filter-chip flex h-9 shrink-0 cursor-pointer items-center justify-center gap-x-2 rounded-full bg-neon-blue px-5 text-[#1A1A1A] shadow-neon-blue"
+          data-filter="all"
+        >
+          <p class="text-sm font-bold leading-normal">All</p>
+        </div>
+        <div
+          class="filter-chip flex h-9 shrink-0 cursor-pointer items-center justify-center gap-x-2 rounded-full border border-neon-pink/50 bg-transparent px-5 text-neon-pink"
+          data-filter="competitive"
+        >
+          <p class="text-sm font-medium leading-normal">Competitive</p>
+        </div>
+        <div
+          class="filter-chip flex h-9 shrink-0 cursor-pointer items-center justify-center gap-x-2 rounded-full border border-neon-pink/50 bg-transparent px-5 text-neon-pink"
+          data-filter="social"
+        >
+          <p class="text-sm font-medium leading-normal">Social</p>
+        </div>
+        <div
+          class="filter-chip flex h-9 shrink-0 cursor-pointer items-center justify-center gap-x-2 rounded-full border border-neon-pink/50 bg-transparent px-5 text-neon-pink"
+          data-filter="youth"
+        >
+          <p class="text-sm font-medium leading-normal">Youth</p>
+        </div>
+        <div
+          class="filter-chip flex h-9 shrink-0 cursor-pointer items-center justify-center gap-x-2 rounded-full border border-neon-pink/50 bg-transparent px-5 text-neon-pink"
+          data-filter="seniors"
+        >
+          <p class="text-sm font-medium leading-normal">Seniors</p>
+        </div>
+      </div>
+      <!-- League Cards -->
+      <div class="flex flex-col gap-4 p-4 pb-28">
+        <!-- Card 1 -->
+        <div
+          class="league-card overflow-hidden rounded-xl border border-neon-blue/20 bg-gray-900/50 shadow-lg @container"
+          data-category="social"
+        >
+          <div class="flex flex-col items-stretch justify-start">
+            <div
+              class="w-full bg-center bg-no-repeat aspect-video bg-cover"
+              data-alt="Abstract neon lights in a bowling alley"
+              style="
+                background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAbx0Vyy7QDSs26jVAo37GGmHlLA-t17h5cXfy5QnsaVqQXDQU8cwmvGGv7Weyo-iuORbXF-GA9CnwEeuqpCUpuoXNm2B0OEVwNlAXeg87AaFal0v93dMsOiMH1fThGzmcLuVpsX2JEWOrTMdAh9dU1OETCs3q8Cl5GQK-fMC5oqy9eG-yGxdb9MP2mi0Do_cROh3ALrNSQnFkNiLR5FmJORJ2LBmdsyNmiHdza3DAEAiP2xRBlVtOzOg61O3DC_DQX9PKaMHWNgORl');
+              "
+            ></div>
+            <div
+              class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-2 p-4"
+            >
+              <p class="text-sm font-bold leading-normal text-neon-green">
+                SOCIAL
+              </p>
+              <p
+                class="text-xl font-bold leading-tight tracking-tight text-white"
+              >
+                Cosmic Strikers League
+              </p>
+              <div class="flex flex-col gap-1 text-gray-300">
+                <p class="text-base font-normal leading-normal">
+                  Mon, 7:00 PM | Fun, non-competitive league for all skills.
+                </p>
+                <p class="text-base font-normal leading-normal">
+                  Starts May 20th | 12 Weeks
+                </p>
+              </div>
+              <div class="pt-2">
+                <button
+                  class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-neon-pink text-white text-sm font-bold leading-normal shadow-neon-pink transition-shadow hover:shadow-none"
+                >
+                  <span class="truncate">View Details</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div
+          class="league-card overflow-hidden rounded-xl border border-neon-blue/20 bg-gray-900/50 shadow-lg @container"
+          data-category="competitive"
+        >
+          <div class="flex flex-col items-stretch justify-start">
+            <div
+              class="w-full bg-center bg-no-repeat aspect-video bg-cover"
+              data-alt="Close-up of bowling pins being struck by a ball"
+              style="
+                background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBmV5X9DqwNdUS9gii4GF3lZv1uiJVOUg2FG8S7O3KO_ssHRSFs4jxhMQ0I3ozHScwsEaJl7Urxp9nyYu9CufZnBB3zI26w2ahfVKr-wcCkq6EThDwOxaIkql1j_FkjxjrYclKLzopF8UVM7UkmreT-Z3XD1K61GCtR-ZKfGMLmm4ViS_PgxoNJVdW_hZVQ4A4i308B6GsHDa0dspYu9R0vP9dilrjcPFDzHUI1xtfGL3z21WJ9lDP8YCGGs0gzjpqCTzftcHcF5m_H');
+              "
+            ></div>
+            <div
+              class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-2 p-4"
+            >
+              <p class="text-sm font-bold leading-normal text-neon-green">
+                COMPETITIVE
+              </p>
+              <p
+                class="text-xl font-bold leading-tight tracking-tight text-white"
+              >
+                Valley Bowl Pro-Am
+              </p>
+              <div class="flex flex-col gap-1 text-gray-300">
+                <p class="text-base font-normal leading-normal">
+                  Wed, 8:00 PM | High-stakes competitive action.
+                </p>
+                <p class="text-base font-normal leading-normal">
+                  Starts June 1st | 16 Weeks
+                </p>
+              </div>
+              <div class="pt-2">
+                <button
+                  class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-neon-pink text-white text-sm font-bold leading-normal shadow-neon-pink transition-shadow hover:shadow-none"
+                >
+                  <span class="truncate">View Details</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div
+          class="league-card overflow-hidden rounded-xl border border-neon-blue/20 bg-gray-900/50 shadow-lg @container"
+          data-category="youth"
+        >
+          <div class="flex flex-col items-stretch justify-start">
+            <div
+              class="w-full bg-center bg-no-repeat aspect-video bg-cover"
+              data-alt="Kids smiling and getting ready to bowl"
+              style="
+                background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCpQt6tkBpn41yFQtwnSS_piG70Cjj3HP-IkhT8FLDFd5VO6USKKqC5quLp0UzgON5PZWhZpDyxLwlL_LGxE0844z6WO9AxJHU6YJBLYyjmTZb3QsAphVRTyWTpp_w51ReSd8e-050-sE5KKc1hI4xG8yBLi7RrrmIMj0pYiV7ArGaGRHjIAaHoEua6CibhfttjbzlGrvUGlcpaCTeWmp-VbcolvMhJ1_AMpikddtFR9O7D-HQ-TQtxISRHUuL-AsAaXOpGkmq3DdvX');
+              "
+            ></div>
+            <div
+              class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-2 p-4"
+            >
+              <p class="text-sm font-bold leading-normal text-neon-green">
+                YOUTH
+              </p>
+              <p
+                class="text-xl font-bold leading-tight tracking-tight text-white"
+              >
+                Pin Pals Youth League
+              </p>
+              <div class="flex flex-col gap-1 text-gray-300">
+                <p class="text-base font-normal leading-normal">
+                  Sat, 10:00 AM | A great league for kids and teens to learn.
+                </p>
+                <p class="text-base font-normal leading-normal">
+                  Starts May 25th | 10 Weeks
+                </p>
+              </div>
+              <div class="pt-2">
+                <button
+                  class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-neon-pink text-white text-sm font-bold leading-normal shadow-neon-pink transition-shadow hover:shadow-none"
+                >
+                  <span class="truncate">View Details</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Floating Action Button (FAB) -->
+      <a href="contact.html" class="fixed bottom-6 right-6 z-20">
+        <button
+          class="flex h-16 w-16 cursor-pointer items-center justify-center rounded-full bg-neon-blue text-[#1A1A1A] shadow-neon-blue transition-shadow hover:shadow-none"
+        >
+          <span class="material-symbols-outlined text-4xl">edit_calendar</span>
+        </button>
+      </a>
     </div>
-
-    <script src="js/main.js" defer></script>
+    <script src="js/leagues.js" defer></script>
   </body>
 </html>
