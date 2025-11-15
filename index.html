@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Valley Bowl Madera</title>
+    <meta
+      name="description"
+      content="Valley Bowl Madera — Leagues, events, open play, and more."
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand">
+        <img src="assets/logo.svg" alt="Valley Bowl Madera logo" class="logo" />
+        <h1>Valley Bowl Madera</h1>
+      </div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html" class="active">Home</a>
+        <a href="league.html">League</a>
+        <a href="events.html">Events</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button
+        id="snackbar-toggle"
+        class="snackbar-toggle"
+        aria-expanded="false"
+        aria-controls="snackbar"
+      >
+        ☰
+      </button>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-inner">
+          <h2>Welcome to Valley Bowl Madera</h2>
+          <p>
+            Dark neon vibes, bright nights. Join a league, host an event, or
+            come bowl for fun.
+          </p>
+          <div class="cta">
+            <a class="btn" href="league.html">Join a League</a>
+            <a class="btn outline" href="events.html">See Events</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="features">
+        <article>
+          <h3>Leagues</h3>
+          <p>
+            Competitive and recreational leagues for all ages and abilities.
+            Weekly play and year-round seasons.
+          </p>
+          <a href="league.html" class="link">Explore leagues →</a>
+        </article>
+
+        <article>
+          <h3>Events & Parties</h3>
+          <p>
+            Birthday parties, corporate events, fundraisers — we do it all.
+            Catering options available.
+          </p>
+          <a href="events.html" class="link">Plan your event →</a>
+        </article>
+
+        <article>
+          <h3>Open Play</h3>
+          <p>
+            Walk-ins welcome. Rent shoes, grab arcade tokens, and enjoy food &
+            drinks at the snack bar.
+          </p>
+          <a href="contact.html" class="link">Contact us →</a>
+        </article>
+      </section>
+
+      <section class="gallery">
+        <h3>Gallery</h3>
+        <div class="shots">
+          <div class="shot neon" aria-hidden="true">Lane Night</div>
+          <div class="shot neon" aria-hidden="true">League Play</div>
+          <div class="shot neon" aria-hidden="true">Party Time</div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>
+        © <span id="year"></span> Valley Bowl Madera — 1234 Bowling Ave, Madera,
+        CA
+      </p>
+      <p>
+        <a href="contact.html">Contact</a> • <a href="events.html">Events</a> •
+        <a href="league.html">League</a>
+      </p>
+    </footer>
+
+    <div id="snackbar" class="snackbar" role="dialog" aria-hidden="true">
+      <nav class="snackbar-nav">
+        <a href="index.html">Home</a>
+        <a href="league.html">League</a>
+        <a href="events.html">Events</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button
+        id="snackbar-close"
+        class="snackbar-close"
+        aria-label="Close menu"
+      >
+        ✕
+      </button>
+    </div>
+
+    <script src="js/main.js" defer></script>
+  </body>
+</html>

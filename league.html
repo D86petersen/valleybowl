@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Leagues — Valley Bowl Madera</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand">
+        <img src="assets/logo.svg" alt="Valley Bowl Madera logo" class="logo" />
+        <h1>Leagues</h1>
+      </div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="league.html" class="active">League</a>
+        <a href="events.html">Events</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button
+        id="snackbar-toggle-2"
+        class="snackbar-toggle"
+        aria-expanded="false"
+        aria-controls="snackbar"
+      >
+        ☰
+      </button>
+    </header>
+
+    <main class="page">
+      <section>
+        <h2>League Play</h2>
+        <p>
+          We host multiple leagues across the week: mixed doubles, seniors,
+          youth, and competitive scratch leagues. Seasons are 12–20 weeks
+          depending on the division.
+        </p>
+        <h3>How to join</h3>
+        <ol>
+          <li>Pick the division that suits your skill and schedule.</li>
+          <li>Register online or at the front desk.</li>
+          <li>Pay season fees and show up ready to bowl.</li>
+        </ol>
+        <h3>Contact for league questions</h3>
+        <p>
+          Email:
+          <a href="mailto:leagues@valleybowlmadera.example"
+            >leagues@valleybowlmadera.example</a
+          >
+          or use the <a href="contact.html">Contact</a> page.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© <span id="year-league"></span> Valley Bowl Madera</p>
+    </footer>
+
+    <div id="snackbar" class="snackbar" role="dialog" aria-hidden="true">
+      <nav class="snackbar-nav">
+        <a href="index.html">Home</a>
+        <a href="league.html">League</a>
+        <a href="events.html">Events</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button
+        id="snackbar-close-2"
+        class="snackbar-close"
+        aria-label="Close menu"
+      >
+        ✕
+      </button>
+    </div>
+
+    <script src="js/main.js" defer></script>
+  </body>
+</html>
