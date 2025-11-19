@@ -12,19 +12,35 @@ const navbar = document.getElementById('navbar');
 const navLinks = document.querySelectorAll('.nav-link');
 const logoText = document.getElementById('logo-text');
 
+// Helper to check if a link is active
+function isLinkActive(link) {
+    // Check if the link has the text-red-400 class manually added (for subpages)
+    return link.classList.contains('text-red-400') && !link.classList.contains('hover:text-red-400');
+}
+
 window.addEventListener('scroll', () => {
     if (window.scrollY > 20) {
         navbar.classList.remove('transparent-nav');
         navbar.classList.add('scrolled-nav');
         logoText.classList.remove('drop-shadow-md');
-        navLinks.forEach(link => link.classList.remove('drop-shadow-sm', 'text-white'));
-        navLinks.forEach(link => link.classList.add('text-gray-200'));
+        
+        navLinks.forEach(link => {
+            if (!isLinkActive(link)) {
+                link.classList.remove('drop-shadow-sm', 'text-white');
+                link.classList.add('text-gray-200');
+            }
+        });
     } else {
         navbar.classList.add('transparent-nav');
         navbar.classList.remove('scrolled-nav');
         logoText.classList.add('drop-shadow-md');
-        navLinks.forEach(link => link.classList.add('drop-shadow-sm', 'text-white'));
-        navLinks.forEach(link => link.classList.remove('text-gray-200'));
+        
+        navLinks.forEach(link => {
+            if (!isLinkActive(link)) {
+                link.classList.add('drop-shadow-sm', 'text-white');
+                link.classList.remove('text-gray-200');
+            }
+        });
     }
 });
 

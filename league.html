@@ -1,79 +1,238 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Leagues — Valley Bowl Madera</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="brand">
-        <img src="assets/logo.svg" alt="Valley Bowl Madera logo" class="logo" />
-        <h1>Leagues</h1>
-      </div>
-      <nav class="main-nav" aria-label="Main navigation">
-        <a href="index.html">Home</a>
-        <a href="league.html" class="active">League</a>
-        <a href="events.html">Events</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-      <button
-        id="snackbar-toggle-2"
-        class="snackbar-toggle"
-        aria-expanded="false"
-        aria-controls="snackbar"
-      >
-        ☰
-      </button>
-    </header>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leagues - Valley Bowl Madera</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Navigation Transition Styles */
+        .scrolled-nav {
+            background-color: rgba(30, 58, 138, 0.95); /* bg-blue-900/95 */
+            backdrop-filter: blur(4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+        .transparent-nav {
+            background-color: rgba(30, 58, 138, 1); /* Solid blue for subpages initially */
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        
+        /* Chat Widget Animations */
+        .chat-enter {
+            animation: slideIn 0.3s ease-out forwards;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        
+        /* Loading Dots Animation */
+        .typing-dot {
+            animation: typing 1.4s infinite ease-in-out both;
+        }
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-50 font-sans text-gray-900 flex flex-col">
 
-    <main class="page">
-      <section>
-        <h2>League Play</h2>
-        <p>
-          We host multiple leagues across the week: mixed doubles, seniors,
-          youth, and competitive scratch leagues. Seasons are 12–20 weeks
-          depending on the division.
-        </p>
-        <h3>How to join</h3>
-        <ol>
-          <li>Pick the division that suits your skill and schedule.</li>
-          <li>Register online or at the front desk.</li>
-          <li>Pay season fees and show up ready to bowl.</li>
-        </ol>
-        <h3>Contact for league questions</h3>
-        <p>
-          Email:
-          <a href="mailto:leagues@valleybowlmadera.example"
-            >leagues@valleybowlmadera.example</a
-          >
-          or use the <a href="contact.html">Contact</a> page.
-        </p>
-      </section>
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 transparent-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2 group cursor-pointer" onclick="window.location.href='index.html'">
+                    <div class="bg-red-500 p-2 rounded-full transform group-hover:rotate-180 transition-transform duration-700">
+                        <i data-lucide="target" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <span id="logo-text" class="text-2xl font-black tracking-tighter uppercase text-white drop-shadow-md transition-colors">
+                        Valley<span class="text-red-500">Bowl</span>
+                    </span>
+                </div>
+
+                <!-- Desktop Nav -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link font-bold uppercase tracking-wide text-sm text-white drop-shadow-sm hover:text-red-400 transition-colors">Home</a>
+                    <a href="index.html#pricing" class="nav-link font-bold uppercase tracking-wide text-sm text-white drop-shadow-sm hover:text-red-400 transition-colors">Rates</a>
+                    <a href="league.html" class="nav-link font-bold uppercase tracking-wide text-sm text-red-400 drop-shadow-sm transition-colors">Leagues</a>
+                    <a href="events.html" class="nav-link font-bold uppercase tracking-wide text-sm text-white drop-shadow-sm hover:text-red-400 transition-colors">Events</a>
+                    <a href="index.html#food" class="nav-link font-bold uppercase tracking-wide text-sm text-white drop-shadow-sm hover:text-red-400 transition-colors">Snack Bar</a>
+                    <a href="contact.html" class="nav-link font-bold uppercase tracking-wide text-sm text-white drop-shadow-sm hover:text-red-400 transition-colors">Contact</a>
+                    <button class="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg">
+                        Book a Lane
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-white p-2">
+                        <i data-lucide="menu" id="menu-icon" class="w-8 h-8"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Overlay -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-blue-900 shadow-xl border-t border-blue-800">
+            <div class="flex flex-col p-4 space-y-4">
+                <a href="index.html" class="mobile-link text-white text-lg font-bold py-2 border-b border-blue-800 hover:text-red-400 text-left">Home</a>
+                <a href="index.html#pricing" class="mobile-link text-white text-lg font-bold py-2 border-b border-blue-800 hover:text-red-400 text-left">Rates</a>
+                <a href="league.html" class="mobile-link text-red-400 text-lg font-bold py-2 border-b border-blue-800 text-left">Leagues</a>
+                <a href="events.html" class="mobile-link text-white text-lg font-bold py-2 border-b border-blue-800 hover:text-red-400 text-left">Events</a>
+                <a href="index.html#food" class="mobile-link text-white text-lg font-bold py-2 border-b border-blue-800 hover:text-red-400 text-left">Snack Bar</a>
+                <a href="contact.html" class="mobile-link text-white text-lg font-bold py-2 border-b border-blue-800 hover:text-red-400 text-left">Contact</a>
+                <button class="bg-red-600 text-white py-3 rounded-lg font-bold text-center w-full">
+                    Book Now
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Small) -->
+    <section class="relative pt-32 pb-12 bg-blue-900">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-slate-900 opacity-90 z-0"></div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-black text-white mb-4 tracking-tight">LEAGUE PLAY</h1>
+            <div class="w-24 h-2 bg-red-500 mx-auto rounded-full"></div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="flex-grow py-16 px-4">
+        <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl p-8 md:p-12 border border-gray-100">
+            
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold text-blue-900 mb-6 flex items-center gap-3">
+                    <i data-lucide="users" class="w-8 h-8 text-red-500"></i>
+                    Join the Fun
+                </h2>
+                <p class="text-lg text-gray-600 leading-relaxed">
+                    We host multiple leagues across the week: mixed doubles, seniors,
+                    youth, and competitive scratch leagues. Seasons are 12–20 weeks
+                    depending on the division. Whether you're a pro or just starting out, there's a spot for you!
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 uppercase tracking-wide">How to Join</h3>
+                    <ol class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <span class="bg-blue-100 text-blue-800 font-bold w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">1</span>
+                            <span class="text-gray-600 pt-1">Pick the division that suits your skill and schedule.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="bg-blue-100 text-blue-800 font-bold w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">2</span>
+                            <span class="text-gray-600 pt-1">Register online or at the front desk.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="bg-blue-100 text-blue-800 font-bold w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">3</span>
+                            <span class="text-gray-600 pt-1">Pay season fees and show up ready to bowl!</span>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 uppercase tracking-wide">Questions?</h3>
+                    <p class="text-gray-600 mb-4">
+                        Not sure which league is right for you? Reach out to our league coordinator.
+                    </p>
+                    <div class="space-y-3">
+                        <a href="mailto:leagues@valleybowlmadera.example" class="flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium transition-colors">
+                            <i data-lucide="mail" class="w-5 h-5"></i> leagues@valleybowlmadera.example
+                        </a>
+                        <a href="contact.html" class="flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium transition-colors">
+                            <i data-lucide="message-square" class="w-5 h-5"></i> Use our Contact Form
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </main>
 
-    <footer class="site-footer">
-      <p>© <span id="year-league"></span> Valley Bowl Madera</p>
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-12 border-t border-slate-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-2 mb-4 md:mb-0">
+                    <i data-lucide="target" class="w-6 h-6 text-red-500"></i>
+                    <span class="text-xl font-black tracking-tighter uppercase">Valley<span class="text-red-500">Bowl</span></span>
+                </div>
+                <div class="flex space-x-6 mb-4 md:mb-0">
+                    <a href="#" class="hover:text-red-500 transition-colors"><i data-lucide="facebook" class="w-6 h-6"></i></a>
+                    <a href="#" class="hover:text-red-500 transition-colors"><i data-lucide="instagram" class="w-6 h-6"></i></a>
+                </div>
+                <div class="text-slate-500 text-sm">
+                    &copy; <span id="year"></span> Valley Bowl Madera. All rights reserved.
+                </div>
+            </div>
+        </div>
     </footer>
 
-    <div id="snackbar" class="snackbar" role="dialog" aria-hidden="true">
-      <nav class="snackbar-nav">
-        <a href="index.html">Home</a>
-        <a href="league.html">League</a>
-        <a href="events.html">Events</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-      <button
-        id="snackbar-close-2"
-        class="snackbar-close"
-        aria-label="Close menu"
-      >
-        ✕
-      </button>
+    <!-- Floating Chat Widget -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <!-- Chat Window -->
+        <div id="chat-window" class="hidden bg-white rounded-2xl shadow-2xl w-80 sm:w-96 mb-4 flex flex-col overflow-hidden border border-gray-200 chat-enter transform origin-bottom-right transition-all duration-300">
+            <!-- Header -->
+            <div class="bg-blue-900 text-white p-4 flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                    <div class="bg-white p-1 rounded-full">
+                        <i data-lucide="bot" class="w-5 h-5 text-blue-900"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm">Valley Bowl Coach</h4>
+                        <p class="text-xs text-blue-200">Ask me for tips & advice!</p>
+                    </div>
+                </div>
+                <button onclick="toggleChat()" class="text-white hover:text-red-400 transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            
+            <!-- Messages Area -->
+            <div id="chat-messages" class="flex-1 p-4 h-80 overflow-y-auto bg-gray-50 space-y-4">
+                <!-- Welcome Message -->
+                <div class="flex items-start gap-2.5">
+                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+                    </div>
+                    <div class="flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-white rounded-e-xl rounded-es-xl shadow-sm">
+                        <p class="text-sm font-normal text-gray-900">Hi there! 👋 I'm your virtual bowling coach. Ask me how to improve your swing, pick up spares, or just ask about the rules!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="p-4 bg-white border-t border-gray-100">
+                <form onsubmit="handleChatSubmit(event)" class="flex items-center gap-2">
+                    <input type="text" id="chat-input" class="flex-1 border border-gray-300 rounded-full px-4 py-2 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" placeholder="Ask a question..." autocomplete="off">
+                    <button type="submit" class="bg-red-500 text-white p-2 rounded-full hover:bg-red-600 transition-colors shadow-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- FAB Button -->
+        <button onclick="toggleChat()" class="group bg-blue-900 hover:bg-blue-800 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 flex items-center gap-2 relative">
+            <span class="absolute -top-1 -right-1 flex h-3 w-3">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+            </span>
+            <i data-lucide="message-circle" class="w-6 h-6"></i>
+            <span class="font-bold pr-2 hidden group-hover:block transition-all duration-300 text-sm">Ask the Pro</span>
+        </button>
     </div>
 
-    <script src="js/main.js" defer></script>
-  </body>
+    <script src="script.js"></script>
+</body>
 </html>
